@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.android.tenant.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:id="@+id/profile"
+        android:textSize="25sp"/>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/profile"
+        android:hint="Name"
+        android:inputType="text"
+        android:id="@+id/name"
+        />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/profile"
+        android:hint="Age"
+        android:inputType="number"
+        android:id="@+id/age"
+        />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:id="@+id/radioGrp">
+
+        <RadioButton
+            android:id="@+id/radioMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+</RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/profile"
+        android:hint="Occupation"
+        android:id="@+id/occup"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/profile"
+        android:hint="Contact no."
+        android:id="@+id/contact"
+        android:inputType="phone"
+        />
+
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/profile"
+        android:hint="Email"
+        android:id="@+id/email"
+        android:inputType="textWebEmailAddress"
+        />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioGrp2">
+
+        <RadioButton
+            android:id="@+id/radioMarried"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Married"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioUnmarried"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unmarried" />
+
+    </RadioGroup>
+</LinearLayout>
+
+
+<Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/marital"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:text="SAVE"
+        android:id="@+id/button2"
+        />
+
+
+</LinearLayout>
