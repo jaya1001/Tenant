@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:paddingTop="80dp"
-        android:layout_margin="28dp"
+        android:layout_margin="18dp"
         android:hint="Email" />
 
     <EditText

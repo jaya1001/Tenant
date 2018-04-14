@@ -12,8 +12,9 @@ public class tenantDetail {
     private long contact;
     private String email;
     private String marital_status = "";
+    private int type=2;
 
-    public tenantDetail(String name, int age, String gender, String occupation, long contact, String email, String marital_status) {
+    public tenantDetail(String name, int age, String gender, String occupation, long contact, String email, String marital_status,int type) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -21,6 +22,7 @@ public class tenantDetail {
         this.contact = contact;
         this.email = email;
         this.marital_status = marital_status;
+        this.type=type;
     }
 
     public String getName() {
@@ -50,6 +52,8 @@ public class tenantDetail {
     public String getMarital_status() {
         return marital_status;
     }
+
+    public int getType() { return type; }
 
     public void setName(String name) {
         this.name = name;

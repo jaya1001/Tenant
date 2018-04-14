@@ -13,13 +13,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.security.acl.Owner;
-
-/**
- * Created by User on 3/31/2018.
- */
-
-public class ownerProfile extends AppCompatActivity {
+public class landlordProfile extends AppCompatActivity {
 
     private Button save;
     private EditText L_name;
@@ -47,7 +41,7 @@ public class ownerProfile extends AppCompatActivity {
 
         save = (Button) findViewById(R.id.L_save);
 
-        FirebaseApp.initializeApp(ownerProfile.this);
+        FirebaseApp.initializeApp(landlordProfile.this);
         mFirebase = FirebaseDatabase.getInstance();
         mOwnerReference = mFirebase.getReference().child("landlord");
 
@@ -71,11 +65,10 @@ public class ownerProfile extends AppCompatActivity {
                 occupation2 = L_occupation.getText().toString();
                 gender2 = L_sex.getText().toString();
 
-                landlordDetail newLandlord = new landlordDetail(name2,age2,occupation2,gender2,contact2,email2);
+                landlordDetail newLandlord = new landlordDetail(name2,age2,occupation2,gender2,contact2,email2,1);
 
                 mOwnerReference.push().setValue(newLandlord);
             }
         });
     }
-
 }

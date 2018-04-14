@@ -79,7 +79,7 @@ public class tenantProfile extends AppCompatActivity {
                 contact1 = Long.parseLong(contact.getText().toString());
                 gender1 = radioSexButton.getText().toString();
 
-                tenantDetail newTenant = new tenantDetail(name1,age1,gender1,occupation1,contact1,email1,marital_status1);
+                tenantDetail newTenant = new tenantDetail(name1,age1,gender1,occupation1,contact1,email1,marital_status1,2);
 
                 mTenantReference.push().setValue(newTenant);
             }

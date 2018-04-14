@@ -3,7 +3,6 @@ package com.example.android.tenant;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -60,7 +59,7 @@ public class SignUp extends Fragment {
         context = view.getContext();
 
         final Intent i1 = new Intent(context, tenantProfile.class);
-        final Intent i2 = new Intent(context, ownerProfile.class);
+        final Intent i2 = new Intent(context, landlordProfile.class);
 
         radioPersonGroup = (RadioGroup)view.findViewById(R.id.signGrp);
 
@@ -84,34 +83,16 @@ public class SignUp extends Fragment {
                             @Override
                             public void onComplete(@NonNull final Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getActivity(), "SignUp successful", Toast.LENGTH_SHORT).show();
-
                                     final FirebaseUser user = task.getResult().getUser();
                                     if (user != null) {
-                                        Toast.makeText(getActivity(), "user is not null", Toast.LENGTH_SHORT).show();
-
                                         if (!user.isEmailVerified())
                                         {
                                             sendVerificationEmail();
-
-//                                            final Handler handler = new Handler();
-//                                            handler.postDelayed(new Runnable() {
-//                                                @Override
-//                                                public void run() {
-//                                                    Toast.makeText(getActivity(), "entered in runnable", Toast.LENGTH_SHORT).show();
-//                                                    if(user.isEmailVerified())
-//                                                    {
-//                                                        Toast.makeText(getActivity(), "email has been verified", Toast.LENGTH_SHORT).show();
-//                                                    }
-//                                                    //Do something after 100ms
-//                                                }
-//                                            }, 10000);
 
                                               if (radioRentButton.getText().toString().compareTo("Tenant") == 0) {
                                                     startActivity(i1);
                                                 } else {
                                                     startActivity(i2);
-
                                                 }
                                         }
                                         else {
@@ -140,10 +121,8 @@ public class SignUp extends Fragment {
     }
 
     private void sendVerificationEmail() {
-        // Disable button
+
         view.findViewById(R.id.signButton).setEnabled(false);
-        // Send verification email
-        // [START send_email_verification]
         final FirebaseUser user;
         user = mAuth.getCurrentUser();
         assert user != null;
@@ -162,7 +141,6 @@ public class SignUp extends Fragment {
                                     Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Log.e(TAG, "sendEmailVerification", task.getException());
                             Toast.makeText(getActivity(),
                                     "Failed to send verification email.",
                                     Toast.LENGTH_SHORT).show();

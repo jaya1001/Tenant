@@ -23,8 +23,12 @@
             android:label="Tenant Profile"
             android:theme="@style/AppTheme"/>
         <activity
-            android:name=".ownerProfile"
+            android:name=".landlordProfile"
             android:label="Owner Profile"
+            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".newEntry"
+            android:label="Entry Profile"
             android:theme="@style/AppTheme"/>
 
     </application>

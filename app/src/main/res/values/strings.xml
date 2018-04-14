@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Tenant</string>
+    <string name="rent_prompt">Choose a range</string>
+    <string name="bhk_prompt">Choose a range</string>
+
+    <string-array name="bhk_array">
+        <item>Single Room</item>
+        <item>1 BHK</item>
+        <item>2 BHK</item>
+        <item>3 BHK</item>
+        <item> >3 BHK </item>
+    </string-array>
+
+    <string-array name="rent_array">
+        <item>Below 3000</item>
+        <item>3000-5000</item>
+        <item>5000-10000</item>
+        <item> >10000 </item>
+
+    </string-array>
 </resources>

@@ -7,14 +7,21 @@ public class landlordDetail {
     private String occupation = "";
     private long contact;
     private String email;
+    private int type=1;
 
-    public landlordDetail(String name, int age, String gender, String occupation, long contact, String email) {
+    public landlordDetail(){
+
+    }
+
+
+    public landlordDetail(String name, int age, String gender, String occupation, long contact, String email, int type) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.occupation = occupation;
         this.contact = contact;
         this.email = email;
+        this.type = type;
     }
 
     public String getName() {
@@ -40,6 +47,8 @@ public class landlordDetail {
     public String getEmail() {
         return email;
     }
+
+    public int getType() { return type; }
 
     public void setName(String name) {
         this.name = name;
