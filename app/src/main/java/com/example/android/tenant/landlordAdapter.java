@@ -13,13 +13,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /**
- * Created by User on 4/5/2018.
+ * Created by User on 4/14/2018.
  */
 
-public class tenantAdapter extends ArrayAdapter<String> {
+public class landlordAdapter extends ArrayAdapter<String> {
 
-    public tenantAdapter(@NonNull Context context, ArrayList<String> newEntries) {
-        super(context, 0 , newEntries);
+    landlordAdapter(@NonNull Context context, ArrayList<String> myEntries) {
+        super(context, 0 , myEntries);
     }
 
     @NonNull
@@ -29,18 +29,15 @@ public class tenantAdapter extends ArrayAdapter<String> {
         View listItemView = convertView;
         if(listItemView==null)
         {
-            listItemView= LayoutInflater.from(getContext()).inflate(R.layout.all_homes,parent,false);
+            listItemView= LayoutInflater.from(getContext()).inflate(R.layout.list_my_home,parent,false);
         }
 
         String entryId = getItem(position);
 
-        TextView entryView = (TextView) listItemView.findViewById(R.id.entry_id);
+        Toast.makeText(getContext(), entryId, Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(getContext(),entryView.getText().toString(),Toast.LENGTH_SHORT).show();
-
+        TextView entryView = (TextView) listItemView.findViewById(R.id.my_entry_id);
         entryView.setText(entryId);
-
-        //Toast.makeText(getContext(),entryView.getText().toString(),Toast.LENGTH_SHORT).show();
 
         return listItemView;
     }

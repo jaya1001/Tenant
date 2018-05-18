@@ -31,6 +31,15 @@
             android:label="Entry Profile"
             android:theme="@style/AppTheme"/>
 
+        <activity
+            android:name=".lHomePage"
+            android:label="landlord home"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".tHomePage"
+            android:label="tenant home"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

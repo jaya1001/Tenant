@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -38,6 +39,13 @@ public class Login extends Fragment {
     private EditText mEmail;
     private EditText mPassword;
     private Context context;
+    final ArrayList<String> landEmail = new ArrayList<String>();
+    final ArrayList<String> tenantEmail = new ArrayList<String>();
+    private String email;
+    private String password;
+    DatabaseReference rootRef ;
+
+    private int check=-1;
 
     public Login(){
 
@@ -60,15 +68,13 @@ public class Login extends Fragment {
         Button b2 = (Button)view.findViewById(R.id.button2);
         context = view.getContext();
 
-        final Intent i1 = new Intent(context, tenantProfile.class);
-        final Intent i2 = new Intent(context, newEntry.class);
+        final Intent i1 = new Intent(context, tHomePage.class);
+        final Intent i2 = new Intent(context, lHomePage.class);
 
         /////////////////////////////////////////////////////
 
-        final ArrayList<String> landEmail = new ArrayList<String>();
-        final ArrayList<String> tenantEmail = new ArrayList<String>();
+        rootRef = FirebaseDatabase.getInstance().getReference();
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference landlordRef = rootRef.child("landlord");
 
         ValueEventListener eventListener = new ValueEventListener() {
@@ -93,6 +99,8 @@ public class Login extends Fragment {
 
         DatabaseReference tenantRef = rootRef.child("tenant");
 
+
+
         ValueEventListener eventListener1 = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,8 +118,8 @@ public class Login extends Fragment {
 
             }
         };
-        tenantRef.addListenerForSingleValueEvent(eventListener1);
 
+        tenantRef.addListenerForSingleValueEvent(eventListener1);
 
         /////////////////////////////////////////////////////
 
@@ -119,9 +127,8 @@ public class Login extends Fragment {
             @Override
             public void onClick(final View view) {
 
-                final String email = mEmail.getText().toString();
-                final String password = mPassword.getText().toString();
-
+                email = mEmail.getText().toString();
+                password = mPassword.getText().toString();
 
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -133,14 +140,16 @@ public class Login extends Fragment {
                                             Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
 
-                                    int check=-1;
 
-                                    if(landEmail.contains(email))
+                                    if(landEmail.contains(email)) {
                                         check = 1;
+                                        String uid = getUserId();
+                                    }
 
-                                    else if(tenantEmail.contains(email))
+                                    else if(tenantEmail.contains(email)) {
                                         check = 2;
-
+                                        String uid = getUserId();
+                                    }
 
                                     if(user.isEmailVerified() && check==1)
                                     {
@@ -169,6 +178,43 @@ public class Login extends Fragment {
         });
 
         return view;
+    }
+
+    public String getUserId()
+    {
+        String user ="" ;
+        final String[] id = {""};
+
+        if(check == 1)
+        {
+            user = "landlord";
+        }
+        else if(check == 2)
+        {
+            user = "tenant";
+        }
+
+        final Query[] query = {rootRef.child(user).orderByChild("email").equalTo(email)};
+        query[0].addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
+                        // do something with the individual "issues"
+                        id[0] = issue.getKey();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return id[0];
     }
 
     @Override
